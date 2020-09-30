@@ -1,0 +1,61 @@
+{
+    "name": "UK Digital Tax Reporter",
+    "version": "2020.1",
+    "description": "An extension assist you to report on your UK Digial Taxes",
+    "permissions": [
+        "activeTab", 
+        "declarativeContent", 
+        "notifications",
+        "https://*.merchantos.com/*",
+        "https://*.lightspeedapp.com/*",
+        "https://www.google-analytics.com/*",
+        "storage", 
+        "tabs"
+    ],
+    "options_page": "options.html",
+    "content_security_policy": "script-src 'self' https://www.google-analytics.com/analytics.js https://www.googletagmanager.com/gtag/js; object-src 'self'",
+    "web_accessible_resources": [
+        "svg-loaders/*.svg",
+        "Resources/sweetalert2.all.min.js"
+      ],
+      "content_scripts": [{
+        "js": [
+            "Resources/jquery-3.4.1.min.js",
+            "Resources/semantic.min.js",
+            "Resources/sweetalert.min.js",
+            "Resources/papaparse.min.js",
+            "Resources/sweetalert2.all.min.js"
+        ],
+        "matches": ["http://*/*", "https://*/*"],
+        "run_at":"document_idle",
+        "all_frames":false
+    },{
+            "js": [
+                "ContentScript.js"
+            ],
+            "matches": ["https://*.merchantos.com/*", "https://*.lightspeedapp.com/*"],
+            "run_at":"document_idle",
+            "all_frames":false
+        }
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/Tax_unreduced-16_x_16.png",
+            "32": "images/Tax_unreduced-32_x_32.png",
+            "48": "images/Tax_unreduced-48_x_48.png",
+            "128": "images/Tax_unreduced-128_x_128.png"
+        }
+    },
+    "icons": {
+        "16": "images/Tax_unreduced-16_x_16.png",
+            "32": "images/Tax_unreduced-32_x_32.png",
+            "48": "images/Tax_unreduced-48_x_48.png",
+            "128": "images/Tax_unreduced-128_x_128.png"
+    },
+    "manifest_version": 2
+}
